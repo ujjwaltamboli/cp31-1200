@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while (t--){
+        int n;
+        cin>>n;
+        vector<vector<int>> store1(n,vector<int>(2,0));
+        vector<vector<int>> store2(n,vector<int>(2,0));
+        vector<vector<int>> store3(n,vector<int>(2,0));
+        for (int i=0;i<n;i++){
+            cin>>store1[i][0];
+            store1[i][1]=i;
+        }
+        for (int i=0;i<n;i++){
+            cin>>store2[i][0];
+            store2[i][1]=i;
+        }
+
+        for (int i=0;i<n;i++){
+            cin>>store3[i][0];
+            store3[i][1]=i;
+        }
+
+        sort(store1.rbegin(), store1.rend());
+        sort(store2.rbegin(), store2.rend());
+        sort(store3.rbegin(), store3.rend());
+        int maxi=0;
+        for (int i=0;i<3;i++){
+            for (int j=0;j<3;j++){
+                for (int k=0;k<3;k++){
+                    if (store1[i][1]==store2[j][1] || store2[j][1]==store3[k][1] || store1[i][1]==store3[k][1])continue;
+                    maxi=max(maxi, store1[i][0]+store2[j][0]+store3[k][0]);
+                }
+            }
+        }
+        cout<<maxi<<endl;
+
+        //T.C.:- O(nlogn)
+        //S.C.:- O(n*2);
+    }
+    return 0;
+}
