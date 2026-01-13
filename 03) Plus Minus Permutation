@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    long long t;
+    cin>>t;
+    while (t--){
+        long long n,x,y;
+        cin>>n>>x>>y;
+        long long z=x*y/__gcd(x,y);
+
+
+        long long g=n/x;
+        long long h=n/y;
+        long long j=n/z;
+
+        g=g-j;
+        h=h-j;
+        long long sum1=n*(n+1)/2-(n-g)*(n-g+1)/2;
+        long long sum2=h*(h+1)/2;
+
+        cout<<sum1-sum2<<endl;
+
+        //T.C.:- O(1)
+        //S.C.:- O(1)
+    }
+    return 0;
+}
