@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while (t--){
+        int n;
+        cin>>n;
+        vector<int> store(n,0);
+        for (int i=0;i<n;i++){
+            cin>>store[i];
+        }
+        int mini=1e9;
+        int maxi=0;
+        for (int i=0;i<n;i++){
+            mini=min(mini, store[i]);
+            maxi=max(maxi,store[i]);
+        }
+
+        if (mini==maxi){
+            cout<<1<<endl;
+            continue;
+        }
+        int i=0;
+        vector<int> ans;
+        ans.push_back(store[0]);
+        for (int j=2;j<n;j++){
+            int mid=j-1;
+            if ((abs(store[i]-store[mid])+abs(store[mid]-store[j]))>abs(store[i]-store[j])){
+                i=mid;
+                ans.push_back(store[mid]);
+            }
+        }
+        ans.push_back(store[n-1]);
+        cout<<ans.size()<<endl;
+    }
+
+    //T.C.:- O(n);
+    //S.C.:- O(n);
+}
