@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while (t--){
+        int n;
+        cin>>n;
+        vector<int> store(n,0);
+        for (int i=0;i<n;i++){
+            cin>>store[i];
+        }
+
+        int i=0;
+        int j=n-1;
+
+        int maxi=n;
+        int mini=1;
+        bool flag=true;
+
+        while (store[i]==maxi || store[i]==mini || store[j]==maxi || store[j]==mini){
+            if (store[i]==maxi){
+                maxi=maxi-1;
+                i++;
+            }
+            else if (store[j]==maxi){
+                maxi=maxi-1;
+                j--;
+            }
+            if (store[i]==mini){
+                mini=mini+1;
+                i++;
+            }
+            else if(store[j]==mini){
+                mini=mini+1;
+                j--;
+            }
+
+            if (i>=j){
+                flag=false;
+                break;
+            }
+        }
+        if (!flag){
+            cout<<-1<<endl;
+            continue;
+        }
+        cout<<i+1<<" "<<j+1<<endl;
+    }
+
+    //T.C.:- O(n)
+    //S.C.:- O(n)
+    return 0;
+}
